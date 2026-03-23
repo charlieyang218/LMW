@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "EB Garamond", serif;
+  --font-mono: "VT323", monospace;
+  --color-beige-light: #F0EDE0;
+  --color-beige-main: #E0DCCF;
+  --color-beige-dark: #C4C0B3;
+  --color-beige-shadow: #A09C8F;
+  --color-screen-black: #222529;
+  --color-crt-green: #33ff00;
+  --color-ink-black: #0f0f0f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-y: scroll !important;
+    height: auto !important;
+  }
+  body {
+    @apply bg-[#f4f1e6] text-ink-black font-serif;
+    overflow-y: visible !important;
+    height: auto !important;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+/* CRT Scanline Effect */
+.crt-overlay::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.27861; }
+  5% { opacity: 0.34769; }
+  10% { opacity: 0.23604; }
+  15% { opacity: 0.90626; }
+  20% { opacity: 0.18128; }
+  25% { opacity: 0.83891; }
+  30% { opacity: 0.65583; }
+  35% { opacity: 0.57807; }
+  40% { opacity: 0.26559; }
+  45% { opacity: 0.84693; }
+  50% { opacity: 0.96019; }
+  55% { opacity: 0.08523; }
+  60% { opacity: 0.71314; }
+  65% { opacity: 0.33443; }
+  70% { opacity: 0.19829; }
+  75% { opacity: 0.31339; }
+  80% { opacity: 0.24714; }
+  85% { opacity: 0.20347; }
+  90% { opacity: 0.76556; }
+  95% { opacity: 0.11157; }
+  100% { opacity: 0.62252; }
+}
